@@ -4,11 +4,8 @@ class OrderController < ApplicationController
         @order = Order.all
     end
     def sorted
-        @filteredOrders = Order.order(:start_date).all
         filter = params[:filter]
         case filter 
-            when "date"
-                @filteredOrders = Order.order(:start_date).all
             when "customer"
                 @filteredOrders = Order.order(:customer).all
             when "status"
@@ -21,8 +18,6 @@ class OrderController < ApplicationController
                 @filteredOrders = Order.order(:customer).reverse_order.all
             when "status_desc"
                 @filteredOrders = Order.order(:status).reverse_order.all
-            when "date_desc"
-                @filteredOrders = Order.order(:start_date).reverse_order.all
             when "status_completed"
                 @filteredOrders = Order.where("status = 'Выполнен'")
             when "status_work"
@@ -80,7 +75,7 @@ class OrderController < ApplicationController
     end
     private
     def order_params
-        params.require(:order).permit(:customer,:machine,:reg_number,:total_price,:telephone,:status,:start_date,:worktime)
+        params.require(:order).permit(:customer,:machine,:reg_number,:total_price,:telephone,:status,:worktime)
     end
     def download_zak
         order = Order.all
@@ -101,7 +96,6 @@ class OrderController < ApplicationController
         order.each do |o|
             wb.add_worksheet(name: "Заказ № "+o.id.to_s) do |sheet|
                 sheet.add_row ["Закачзик: ",o.customer]
-                sheet.add_row ["Дата начала: ",o.start_date]
                 sheet.add_row %w(Услуга Цена Исполнитель Время_работы) 
                 ol = OrderList.where(order_id: o.id).all
                 ol.each do |ol|

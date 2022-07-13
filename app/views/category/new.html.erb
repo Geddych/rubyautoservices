@@ -1,5 +1,6 @@
 <h1> Создание категории </h1>
 <%= form_for @category, url: new_category_url do |f| %>
+  <label>Название</label>
   <%= f.text_field :title %><br>
   <%= f.submit "Добавить категорию" %>
 <% end %>

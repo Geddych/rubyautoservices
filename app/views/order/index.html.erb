@@ -14,13 +14,6 @@
   </div>
 </div>
 <div class="dropdown">
-  <button class="dropbtn">Дата</button>
-  <div class="dropdown-content">
-    <%= link_to "По убыванию", controller: "order",action: "sorted",filter:"date"  %>
-    <%= link_to "По возрастанию", controller: "order",action: "sorted",filter:"date_desc" %>
-  </div>
-</div>
-<div class="dropdown">
   <button class="dropbtn">Автомобиль</button>
   <div class="dropdown-content">
     <%= link_to "По убыванию", controller: "order",action: "sorted",filter:"auto" %>
@@ -46,7 +39,6 @@
             <td>Заказчик</td>
             <td>Номер телефона</td>
             <td>Автмообиль</td>
-            <td>Дата начала работ </td>
             <td>Статус</td>
             <td>Стоимость</td>
         </tr>
@@ -59,7 +51,6 @@
             <td><%= o.customer %></td>
             <td><%= o.telephone %></td>
             <td><%= o.machine %></td>
-            <td><%= o.start_date %></td>
             <td><%= o.status %></td>
             <td><%= o.total_price %></td>
             <td><%= link_to "Изменить параметры заказа", edit_order_path(o) %></td>
