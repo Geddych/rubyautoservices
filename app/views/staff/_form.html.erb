@@ -1,8 +1,12 @@
 
 <%= form_for staff do |f| %>
+  <label>Имя </label>
   <%= f.text_field :name %><br>
+  <label>Фамилия </label>
   <%= f.text_field :surname %><br>
+  <label>Специальность</label>
   <%= f.text_field :specialization %><br>
+  <label>Разряд </label>
   <%= f.text_field :category %><br>
   <%= f.submit %>
 <% end %>
