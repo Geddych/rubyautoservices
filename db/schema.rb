@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_13_071450) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -34,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_13_071450) do
     t.string "reg_number"
     t.string "telephone"
     t.string "status"
-    t.datetime "start_date", precision: nil
+    t.string "start_date"
     t.integer "worktime"
   end
 
@@ -43,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_13_071450) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "categories_id"
+    t.bigint "categories_id"
     t.integer "worktime"
     t.index ["categories_id"], name: "index_services_on_categories_id"
   end
