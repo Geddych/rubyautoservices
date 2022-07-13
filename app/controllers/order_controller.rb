@@ -1,4 +1,4 @@
-require "Axlsx"
+
 class OrderController < ApplicationController
     def index
         @order = Order.all
