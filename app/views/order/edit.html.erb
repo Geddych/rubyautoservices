@@ -1,0 +1,42 @@
+
+
+<%= form_for @order, url: order_path do |f| %>
+<label>Заказчик</label>
+<%= f.text_field :customer %><br>
+<label>Телефон</label>
+<%= f.text_field :telephone %><br>
+<label>Автомобиль</label>
+<%= f.text_field :machine %><br>
+<label>Регистрационный знак</label>
+<%= f.datetime_field :start_date %><br>
+<label>Регистрационный знак</label>
+<%= f.text_field :reg_number %><br>
+
+<label>Общая цена</label>
+<%= f.text_field :total_price, value: @totalPrice %><br>
+<label>Время на работу</label>
+<%= f.text_field :worktime, value: @worktime %><br>
+<%= f.select :status, ["В работе","Выполнен","Машина возвращена"] %> <br>
+<%= f.submit "Подтвердить заказ" %>
+<% end %>
+
+<%= form_for @list, url:new_order_list_path do |f| %>
+<%= f.hidden_field :order_id, value: params[:id] %>
+<%= f.select :service_id, Service.all.collect {|x| [""+x.title + " | " +"Цена: " + (x.price).to_s, x.id]} %>
+<label>Исполнитель</label>
+<%= f.select :staff_id, Staff.all.collect {|x| [""+x.name+ " " + x.surname +  " | "  + x.specialization, x.id]} %> <br>
+<%= f.submit "Добавить услугу" %>
+<% end %>
+
+<% @orderedList.each do |o| %>
+    <% @services.each do |s| %>
+    <% @staff.each do |st| %>
+        <% s.id == o.service_id %>
+        <% st.id == o.staff_id %>
+        <li> <%= s.title %> | Цена: <%= s.price %> | Время: <%= s.worktime %> | Исполнитель: <%= st.name %> <%= st.surname %>
+        <%= button_to "Удалить", order_list_path(o), method: :delete %> </li>
+        <% end %>
+        <% end %>
+  <% end %>
+
+

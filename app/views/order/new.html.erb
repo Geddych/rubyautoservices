@@ -1,0 +1,12 @@
+<%= form_for @order, url: new_order_path do |f| %>
+<label>Заказчик</label>
+<%= f.text_field :customer %><br>
+<label>Телефон</label>
+<%= f.text_field :telephone %><br>
+<label>Автомобиль</label>
+<%= f.text_field :machine %><br>
+<label>Регистрационный знак</label>
+<%= f.text_field :reg_number %><br>
+
+<%= f.submit "Продолжить редактирование заказа" %>
+<% end %>

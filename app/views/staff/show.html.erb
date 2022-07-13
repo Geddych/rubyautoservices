@@ -1,0 +1,13 @@
+
+  <h1> <%= @staff.surname %> </h1>
+  <h2> <%= @staff.name %> </h2>
+  <p> <%= @staff.specialization %> </p>
+  <p> <%= @staff.category %> </p>
+
+
+<%= link_to "Изменить данные", edit_staff_path %>
+<a href="/staff">
+        Вернутся к списку
+</a>
+
+<%= button_to "Destroy", staff_path(@staff), method: :delete %>

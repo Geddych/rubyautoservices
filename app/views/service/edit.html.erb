@@ -1,0 +1,11 @@
+<%= form_for @service, url: service_url do |f| %>
+<label>Название</label>
+  <%= f.text_field :title %><br>
+  <label>Цена</label>
+  <%= f.number_field :price %><br>
+  <label>Время на работу</label>
+  <%= f.number_field :worktime %><br>
+  <label>Категория</label>
+  <%= f.select :categories_id, Category.all.collect {|x| [x.title, x.id]} %>
+  <%= f.submit "Изменить услугу" %>
+<% end %>

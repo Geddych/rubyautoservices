@@ -1,0 +1,29 @@
+<h1> Услуги по категориям</h1>
+<%= link_to "Новая услуга", new_service_path %>
+<%= link_to "Новая категория", new_category_path %>
+<%= link_to "К заказам", order_index_path %>
+
+<ul>
+<% @categories.each do |c| %>
+<li> 
+<p> <%= c.title %> <%= link_to "Изменить категорию", edit_category_path(c) %> <%= button_to "Удалить категорию", category_path(c), method: :delete %>
+    <ol>
+    <% @services.each do |s| %>
+    <% if s.categories_id == c.id %>
+        <p><%= s.title %> </p>
+        <p>Цена: <%= s.price %> </p>
+        <p> <%= link_to "Изменить", edit_service_url(s) %> </p>
+        <%= button_to "Удалить", service_path(s), method: :delete %>
+   <% end %>
+
+
+    <% end %>
+    
+     </ol>
+</p>
+</li>
+
+<% end %>
+
+
+</ul>

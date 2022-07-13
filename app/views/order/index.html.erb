@@ -1,0 +1,71 @@
+<%= link_to "Новый", new_order_path %>
+<%= link_to "Просмотреть услуги", service_index_path %>
+<%= link_to "Сотрудники", staff_index_path %>
+<%= link_to "Просмотреть сотрудников", staff_index_path %>
+<%= link_to "Прайслист", controller: "order",action: "exc",type:"pricelist" %>
+<%= link_to "Заказы в xlsx", controller: "order",action: "exc",type:"zakas" %>
+<p>
+<div>
+<div class="dropdown">
+  <button class="dropbtn">Закачик</button>
+  <div class="dropdown-content">
+    <%= link_to "По убыванию", controller: "order",action: "sorted",filter:"customer" %>
+    <%= link_to "По возрастанию", controller: "order",action: "sorted",filter:"customer_desc" %>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Дата</button>
+  <div class="dropdown-content">
+    <%= link_to "По убыванию", controller: "order",action: "sorted",filter:"date"  %>
+    <%= link_to "По возрастанию", controller: "order",action: "sorted",filter:"date_desc" %>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Автомобиль</button>
+  <div class="dropdown-content">
+    <%= link_to "По убыванию", controller: "order",action: "sorted",filter:"auto" %>
+    <%= link_to "По возрастанию", controller: "order",action: "sorted",filter:"auto_desc" %>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Статус</button>
+  <div class="dropdown-content">
+    <%= link_to "По убыванию", controller: "order",action: "sorted",filter:"status" %>
+    <%= link_to "По возрастанию", controller: "order",action: "sorted",filter:"status_desc" %>
+    <%= link_to "Выполненые", controller: "order",action: "sorted",filter:"status_completed" %>
+    <%= link_to "В работе", controller: "order",action: "sorted",filter:"status_work" %>
+    <%= link_to "Сданные работы", controller: "order",action: "sorted",filter:"status_return" %>
+  </div>
+  </div>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <td>Номер заказа</td>
+            <td>Заказчик</td>
+            <td>Номер телефона</td>
+            <td>Автмообиль</td>
+            <td>Дата начала работ </td>
+            <td>Статус</td>
+            <td>Стоимость</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @order.each do |o| %>
+        <% if o.status != "Машина возвращена" %>
+        <tr>
+            <td><%= o.id %></td>
+            <td><%= o.customer %></td>
+            <td><%= o.telephone %></td>
+            <td><%= o.machine %></td>
+            <td><%= o.start_date %></td>
+            <td><%= o.status %></td>
+            <td><%= o.total_price %></td>
+            <td><%= link_to "Изменить параметры заказа", edit_order_path(o) %></td>
+        </tr>
+        <% end %>
+        <% end %>
+    </tbody>
+</table>
+

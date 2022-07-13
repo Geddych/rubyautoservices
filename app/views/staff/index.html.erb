@@ -1,0 +1,15 @@
+<h1> Сотрудники </h1>
+<%= link_to "Новый сотрудник", new_staff_path %>
+<%= link_to "К заказам", order_index_path %>
+
+<ul>
+  <% @staff.each do |s| %>
+    <% if s.persisted?  %>
+    <li>
+    
+    <%= link_to s.name + " " + s.surname, s %>
+    </li>
+    <% end %>
+  <% end %>
+
+</ul>
