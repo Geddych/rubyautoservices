@@ -43,7 +43,7 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 gem "caxlsx_rails"
-
+gem "axlsx"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
